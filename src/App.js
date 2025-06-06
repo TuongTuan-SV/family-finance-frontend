@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from "react";
+import ExpenseForm from "./components/ExpenseForm";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
+  // simple counter: bump it to force ExpenseList to re-fetch
+  const [newExpenseTrigger, setNewExpenseTrigger] = useState(0);
+
+  const handleAdd = () => {
+    setNewExpenseTrigger((prev) => prev + 1);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
+      <h1>Family Expense Tracker</h1>
+      <ExpenseForm onAdd={handleAdd} />
+      <ExpenseList newExpenseTrigger={newExpenseTrigger} />
     </div>
   );
 }
