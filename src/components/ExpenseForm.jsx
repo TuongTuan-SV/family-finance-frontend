@@ -17,7 +17,7 @@ export default function ExpenseForm({ onAdd }) {
 
     try {
       // CHANGE this baseURL when you deploy the back-end to Render
-      const baseURL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+      const baseURL = process.env.REACT_APP_API_URL 
       const res = await axios.post(`${baseURL}/api/expenses`, {
         item,
         amount: parseFloat(amount),

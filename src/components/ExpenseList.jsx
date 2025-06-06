@@ -9,7 +9,7 @@ export default function ExpenseList({ newExpenseTrigger }) {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const baseURL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+      const baseURL = process.env.REACT_APP_API_URL;
       const res = await axios.get(`${baseURL}/api/expenses`);
       setExpenses(res.data);
     } catch (err) {
