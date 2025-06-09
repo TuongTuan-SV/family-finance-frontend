@@ -1,58 +1,57 @@
 // src/components/ExpenseForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import "./ExpenseForm.css";
 
 export default function ExpenseForm({ onAdd }) {
+  // Initialize date to today's date (YYYY-MM-DD) for default value
+  const today = new Date().toISOString().split('T')[0];
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("VND");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(today);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!item || !amount) {
-      alert("Item name and amount are required.");
+      alert("Item and amount are required");
       return;
     }
-
     try {
-      // CHANGE this baseURL when you deploy the back-end to Render
-      const baseURL = process.env.REACT_APP_API_URL 
+      const baseURL = process.env.REACT_APP_API_URL || "http://localhost:4000";
       const res = await axios.post(`${baseURL}/api/expenses`, {
         item,
         amount: parseFloat(amount),
         currency,
         date: date || new Date().toISOString(),
       });
-      onAdd(res.data); // notify parent to refresh list
+      onAdd(res.data);
+      // Reset form, set date back to today
       setItem("");
       setAmount("");
       setCurrency("VND");
-      setDate("");
+      setDate(today);
     } catch (err) {
       console.error(err);
-      alert("Error adding expense. Check console.");
+      alert("Error adding expense");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "1rem" }}>
-      <h2>Add a New Expense</h2>
-      <div>
+    <form className="expense-form" onSubmit={handleSubmit}>
+      <div className="form-row">
         <label>
-          Item:{" "}
+          Item
           <input
             type="text"
             value={item}
             onChange={(e) => setItem(e.target.value)}
-            placeholder="e.g. egg"
+            placeholder="e.g. Eggs"
             required
           />
         </label>
-      </div>
-      <div>
         <label>
-          Amount:{" "}
+          Amount
           <input
             type="number"
             value={amount}
@@ -62,21 +61,18 @@ export default function ExpenseForm({ onAdd }) {
           />
         </label>
       </div>
-      <div>
+      <div className="form-row">
         <label>
-          Currency:{" "}
+          Currency
           <input
             type="text"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
-            placeholder="VND"
             required
           />
         </label>
-      </div>
-      <div>
         <label>
-          Date:{" "}
+          Date
           <input
             type="date"
             value={date}
@@ -84,7 +80,7 @@ export default function ExpenseForm({ onAdd }) {
           />
         </label>
       </div>
-      <button type="submit">Add Expense</button>
+      <button type="submit" className="btn-submit">Add Expense</button>
     </form>
   );
 }
