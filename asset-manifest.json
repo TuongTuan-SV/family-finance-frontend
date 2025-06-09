@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/family-finance-frontend/static/css/main.4a0cfede.css",
-    "main.js": "/family-finance-frontend/static/js/main.987742c3.js",
+    "main.css": "/family-finance-frontend/static/css/main.2bf1e45d.css",
+    "main.js": "/family-finance-frontend/static/js/main.526dd0a3.js",
     "static/js/453.1b7568cd.chunk.js": "/family-finance-frontend/static/js/453.1b7568cd.chunk.js",
     "index.html": "/family-finance-frontend/index.html",
-    "main.4a0cfede.css.map": "/family-finance-frontend/static/css/main.4a0cfede.css.map",
-    "main.987742c3.js.map": "/family-finance-frontend/static/js/main.987742c3.js.map",
+    "main.2bf1e45d.css.map": "/family-finance-frontend/static/css/main.2bf1e45d.css.map",
+    "main.526dd0a3.js.map": "/family-finance-frontend/static/js/main.526dd0a3.js.map",
     "453.1b7568cd.chunk.js.map": "/family-finance-frontend/static/js/453.1b7568cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4a0cfede.css",
-    "static/js/main.987742c3.js"
+    "static/css/main.2bf1e45d.css",
+    "static/js/main.526dd0a3.js"
   ]
 }
