@@ -1,12 +1,26 @@
 /* src/components/ExpenseList.css */
 .expense-list {
-  overflow-x: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.expense-list .filter-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.expense-list .filter-row select,
+.expense-list .filter-row input {
+  padding: 0.5rem;
+  border: 1px solid #ccd0d5;
+  border-radius: 4px;
 }
 
 .expense-list table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Prevent overflow by fixing column widths */
+  table-layout: fixed;
 }
 
 .expense-list th,
@@ -14,28 +28,83 @@
   padding: 0.75rem;
   text-align: left;
   border-bottom: 1px solid #e1e4e8;
-  word-wrap: break-word; /* Allow long text to wrap */
+  word-wrap: break-word;
 }
 
-.expense-list td input {
-  width: 100%; /* Ensure inputs fit within the cell */
+/* Inputs and selects within table cells */
+.expense-list td input,
+.expense-list td select {
+  width: 100%;
   box-sizing: border-box;
   padding: 0.5rem;
   border: 1px solid #ccd0d5;
   border-radius: 4px;
 }
 
+.expense-list .tag {
+  background-color: #e1e4e8;
+  border-radius: 12px;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.25rem;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
 .action-buttons {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap; /* Wrap buttons to avoid overflow */
+  flex-wrap: wrap;
 }
 
-/* Responsive: make table font smaller on small screens */
+/* Responsive card-style layout for small screens */
 @media (max-width: 600px) {
-  .expense-list th,
-  .expense-list td {
-    padding: 0.5rem;
-    font-size: 0.85rem;
+  .expense-list table {
+    display: block;
+    width: 100%;
+    border: none;
+    table-layout: auto;
   }
+
+  .expense-list thead {
+    display: none;
+  }
+
+  .expense-list tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .expense-list tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .expense-list td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  .expense-list td:before {
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  /* Label each cell */
+  .expense-list td:nth-child(1):before { content: "Item"; }
+  .expense-list td:nth-child(2):before { content: "Amount"; }
+  .expense-list td:nth-child(3):before { content: "Currency"; }
+  .expense-list td:nth-child(4):before { content: "Date"; }
+  .expense-list td:nth-child(5):before { content: "Category"; }
+  .expense-list td:nth-child(6):before { content: "Tags"; }
+  .expense-list td:nth-child(7):before { content: "Actions"; }
 }
